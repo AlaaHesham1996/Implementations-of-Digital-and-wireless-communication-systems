@@ -18,7 +18,39 @@ In this respiratory , I will implement multiple modulation/demodulation techniqu
 
 ### Bpsk Results 
 
-![bpsk](https://user-images.githubusercontent.com/46730861/69485466-b11b1e00-0e48-11ea-917a-b3bfaecf7fc8.PNG)
+![bpsk_noise](https://user-images.githubusercontent.com/46730861/69485692-9b5b2800-0e4b-11ea-86a1-84f5fdddc719.png)
+![SNR](https://user-images.githubusercontent.com/46730861/69485734-381dc580-0e4c-11ea-8fac-51c09dc816c4.png)
+
+### Results comments 
+I think all the results make sense :
+* For input binary data , they are either 0s or 1s which is the case .
+* For polar NRZ encoded data , they have the same shape as binary data except that for symbol 0 they have a negative  amplitude instead of zero .
+* For BPSK , they have multiplied by a carrier that is why they have a sinusoidal shape , we could easily detect phase discontinuity .
+* For PSD , most power is   concentrated at 2 kH which is apparently carrier frequency . There are side loops as pulse shape in time domain is a rect function so it will be sinc in frequency domain.
+* After adding noise with variance equal to 0.5  , we could easily notice that data amplitude is not constant anymore . Since we are doing phase modulation , it will not affect Estimated Binary data that much .
+* For constellation , it is as expected have one basis function , and symbol one corresponds to(1* E_b*basis function ) and symbol 0 corresponds to (-1*E_b*basis function)  .Here we have made E_b equals to one .
+* For constellation after adding noise , we can see that noise makes data deviate from E_b  and -E_b that is why we use maximum likelihood to decide if a noisy symbol is symbol 0or symbol 1 .
+* For the SNR graph versus BER , it makes sense .The more you add power to signal , the distance between symbols increase and hence the probability of error decreases .
+
+## For QPSK 
+### Code Highlights :
+
+* Generate data using Randn Matlab function (1s and 0s).
+* Divide bits to even bits and odd bits as well as Time so that inphase components are 1/sqrt(2)*cos(2*pi*Fc*evenTime), and quadrature  components are  1/sqrt(2)*sin(2*pi*Fc*oddTime) .
+* QPSK modulated signals  is the summation of in-phase and quadrature components .
+* To simulated channel effect , AWGN is summed to Qpsk modulated signals.However this noise is now has two components real component to be added to inphase components and imaginary components to be added its magnitude to quadrature components  .
+* For Qpsk receiver , multiply received bits with carrier elementwise .For in phase components multiply them by in phase oscillator and for quadrature multiply them by quadrature oscillator  , and then integrate them separately  with the aid of Matlab Built -in function Trapz .
+* To calculate psd , matlab built-in”psd” function is used.
+* To calculate the bit error rate(BER) , Xoring  data with streamed/received  bits and divide it by the total data size to get percentage of error.
+
+### Qpsk results 
+
+![Qpsk](https://user-images.githubusercontent.com/46730861/69485796-2688ed80-0e4d-11ea-99ad-f741138508b3.png)
+![Qpsk _psd](https://user-images.githubusercontent.com/46730861/69485799-2ab50b00-0e4d-11ea-9b85-3442f619d789.png)
+
+![Qpsk_SNR](https://user-images.githubusercontent.com/46730861/69485774-cbef9180-0e4c-11ea-9d1f-db2e2979868e.png)
+
+
 
 
 
