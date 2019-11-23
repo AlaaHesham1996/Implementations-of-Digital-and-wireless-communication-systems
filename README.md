@@ -18,12 +18,7 @@ In this respiratory , I will implement multiple modulation/demodulation techniqu
 
 ### Bpsk Results 
 
-
-![GitHub bpsk](/images/bpsk.png)
-Format: ![Alt Text](https://drive.google.com/open?id=1J9nPALXr8iXdhVcLeCS5WOq_f_HCoNFh)
-
-
-
+![bpsk](https://user-images.githubusercontent.com/46730861/69485466-b11b1e00-0e48-11ea-917a-b3bfaecf7fc8.PNG)
 
 
 
