@@ -50,6 +50,20 @@ I think all the results make sense :
 
 ![Qpsk_SNR](https://user-images.githubusercontent.com/46730861/69485774-cbef9180-0e4c-11ea-9d1f-db2e2979868e.png)
 
+### Qpsk results comments 
+
+* for input binary data , they are either 0s or 1s which is the case .
+* For QPSK , they have multiplied by a carrier that is why they have a sinusoidal shape , we could easily detect phase discontinuity .
+* For PSD , I do not think that I have coded right as I was expecting to have two peaks at f+fc , and f-fc so it should be sth like this.
+![Qpsk psd expected](https://user-images.githubusercontent.com/46730861/69485834-9eefae80-0e4d-11ea-9cca-b88c0e347697.png)
+
+* After adding noise with variance equal to 0.1 , we could easily notice that data amplitude is not constant anymore . Since we are doing phase modulation , it will not affect Estimated Binary data that much .
+* For constellation , it is as expected have two  basis functions and the angle between every symbol is 90 . They are at (E_b,E_b),(-Eb,Eb),(-E_b,-Eb),(Eb,-Eb) where E_b =1 
+* For the SNR graph versus BER , it makes sense .The more you add power to signal , the distance between symbols increase and hence the probability of error decreases .
+
+* Q-psk is just like performing two Bpsk . One is for inphase component and the other is for quadrature component.
+* By noticing Q-psk and Bpsk BER curves versus SNR , we can easily notice that they have the same probability of error .
+
 
 
 
