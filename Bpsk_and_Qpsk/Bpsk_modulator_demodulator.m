@@ -41,6 +41,8 @@ h=spectrum.welch; %Welch spectrum estimator
 Hpsd = psd(h,bpskModulated,'Fs',Fs);
 plot(Hpsd);
 title('PSD of BPSK modulated Data');
+
+
 %-------------------------------------------
 %Adding Channel Noise
 %-------------------------------------------

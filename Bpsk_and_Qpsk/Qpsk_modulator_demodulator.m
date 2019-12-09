@@ -129,7 +129,7 @@ title('SNR per bit (Eb/N0) Vs BER Curve for QPSK Modulation Scheme');
 xlabel('SNR per bit (Eb/N0) in dB');
 ylabel('Bit Error Rate (BER) in dB');
 grid on;
-hold on;
+%hold on;
 theoreticalBER =0.5*erfc(sqrt(10.^(EbN0dB/10)));
 plotHandle=plot(EbN0dB,log10(theoreticalBER),'b*');
 set(plotHandle,'LineWidth',1.5);
@@ -141,3 +141,10 @@ grid on;
 %plot(Hpsd);
 
 %title('PSD of QPSK modulated Data');
+figure (2)
+numSamplesPerSymbol = 10;
+shape=ones ( numSamplesPerSymbol , 1 ) ;
+TxSignal=upfirdn ( qpskModulated , shape , numSamplesPerSymbol ) ;
+Fs=100;
+
+pwelch(TxSignal)
